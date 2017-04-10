@@ -9,29 +9,16 @@ export default function app() {
       return (
         <div>
         <h1>Blogs by Devon</h1>
+        <NewPost />
         <Content />
+
       </div>);
     }
   });
 
   const Content = React.createClass({
-    getInitialState: function() {
-      return {
-        hidden: false
-      };
-    },
-
-    hideContent: function () {
-      this.setState({
-        hidden: !this.state.hidden
-      });
-    },
 
     render: function() {
-      var styleClass = 'show-content';
-      if (this.state.hidden) {
-        styleClass = 'hide-content';
-      }
 
       return (
       <div>
@@ -61,22 +48,55 @@ export default function app() {
   });
 
   const BlogPost = React.createClass ({
-      render: function() {
-        return (
-          <section>
-          <button onClick={this.hideContent}>Toggle</button>
-          <h1>{this.props.title}</h1>
-          <h3>{this.props.date}</h3>
-          <p>{this.props.body}</p>
-          </section>
-        );
-      },
-      propTypes: {
-        title: React.PropTypes.string.isRequired,
-        date: React.PropTypes.string.isRequired,
-        body: React.PropTypes.string.isRequired,
+
+    getInitialState: function() {
+      return {
+        hidden: false
+      };
+    },
+
+    hideContent: function () {
+      this.setState({
+        hidden: !this.state.hidden
+      });
+    },
+
+    render: function() {
+      var styleClass = 'show-content';
+      if (this.state.hidden) {
+        styleClass = 'hide-content';
       }
+      return (
+        <section>
+        <button onClick={this.hideContent}>Toggle</button>
+        <h1>{this.props.title}</h1>
+        <h3>{this.props.date}</h3>
+        <p className={styleClass}>{this.props.body}</p>
+        </section>
+      );
+    },
+    propTypes: {
+      title: React.PropTypes.string.isRequired,
+      date: React.PropTypes.string.isRequired,
+      body: React.PropTypes.string.isRequired,
+    }
   });
+
+  const NewPost = React.createClass ({
+    render: function() {
+      return (
+        <section>
+        <h3>Create New Post</h3>
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="title">TITLE</label>
+            <input type="text" id="title"/>
+            <label htmlFor="body">BODY</label>
+            <textarea id="body"/>
+          </form>
+        </section>
+      )
+    }
+  })
 
   render(<App />, document.querySelector('#app'));
 }
