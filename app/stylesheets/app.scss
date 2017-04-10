@@ -11,6 +11,14 @@ html {
     body {
         margin: 0;
         padding: 0;
-        background: #CACACA;
+        background: #fafafa;
     }
+}
+
+.hide-content {
+  display: none;
+}
+
+.show-content {
+  display: block;
 }
