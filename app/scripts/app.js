@@ -68,9 +68,9 @@ export default function app() {
       }
       return (
         <section>
-        <button onClick={this.hideContent}>Toggle</button>
-        <h1>{this.props.title}</h1>
+        <h2>{this.props.title}</h2>
         <h3>{this.props.date}</h3>
+        <button onClick={this.hideContent}>Hide</button>
         <p className={styleClass}>{this.props.body}</p>
         </section>
       );
@@ -88,9 +88,9 @@ export default function app() {
         <section>
         <h3>Create New Post</h3>
           <form onSubmit={this.handleSubmit}>
-            <label htmlFor="title">TITLE</label>
+            <label htmlFor="title">title</label>
             <input type="text" id="title"/>
-            <label htmlFor="body">BODY</label>
+            <label htmlFor="body">body</label>
             <textarea id="body"/>
           </form>
         </section>
